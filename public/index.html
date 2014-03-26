@@ -1,0 +1,68 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    
+    <title>Test App</title>
+    <link href="stylesheets/style.css" rel="stylesheet" />
+    <script src='http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js'></script>
+    <script src="javascripts/global.js"></script>
+</head>
+<body>
+    <h1>Modified Nodetest Page</h1>
+    <p>Welcome to our test</p>
+
+    <img src="images/file5701291746605.jpg" width="200px"/>
+    
+    <div id="wrapper">
+        <div id="userInfo">
+            <h2>user info</h2>
+            <p>
+                <strong>
+                    name:
+                </strong>
+                    <span id='userInfoName'></span>
+                <br />
+                <strong>
+                    Age:
+                </strong>
+                    <span id='userInfoAge'></span>
+                <br />
+                <strong> Gender: </strong>
+                <span id='userInfoGender'></span>
+                <br />
+                <strong> Location: </strong>
+                <span id='userInfoLocation'></span>
+            </p>
+        </div>
+
+            <h2>User List</h2>
+        <div id="userList">
+            <table>
+                <tr>
+                    <th>username</th>
+                    <th>email</th>
+                    <th>delete?</th>
+                </tr>
+                <tbody></tbody>
+            </table>
+        </div>
+
+            <h2>Add User</h2> 
+            <div id="addUser">
+                <fieldset>
+                    <input id="inputusername" type='text' placeholder='Username' />
+                           <input id="inputuseremail" type='text' placeholder='Email' />
+                           <br />
+                           <input id="inputuserfullname" type='text' placeholder='Full Name' />
+                           <input id="inputuserage" type='text' placeholder='Age' />
+                           <br />
+                           <input id="inputuserlocation" type='text' placeholder='Location' />
+                           <input id="inputusergender" type='text' placeholder='gender' />
+                           <br />
+                           <button id="btnadduser add user" >ADD USER</button>
+                </fieldset>
+            </div>
+        </div>
+
+</body>
+</html>

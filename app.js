@@ -12,7 +12,7 @@ var path = require('path');
 var mongo = require('mongoskin');
 // Here we find an appropriate database to connect to, defaulting to
 // localhost if we don't find one.
-var uristring = process.env.MONGOLAB_URI || 'mongodb://localhost:27017/nodetest2';
+var uristring = process.env.MONGOLAB_URI || 'mongodb://localhost:27017/nodetestMod';
 var db = mongo.db(uristring, { native_parser: true });
 
 var app = express();
