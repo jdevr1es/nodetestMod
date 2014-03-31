@@ -5,3 +5,5 @@ Modification of CW Buecheler nodetest2 exercise:
 2) to run on Heroku
 3) to use Heroku MongoLab add-on
 4) to show and store "Made in USA" product info
+
+Branch to move Add Company form to a lightbox
