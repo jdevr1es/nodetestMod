@@ -1,20 +1,20 @@
-﻿// Userlist data array for filling in info box
-var userListData = [];
+﻿// Companylist data array for filling in info box
+var companyListData = [];
 
 // DOM Ready =============================================================
 $(document).ready(function () {
 
-    // Populate the user table on initial page load
+    // Populate the company table on initial page load
     populateTable();
 
-    // Username link click
-    $('#userList table tbody').on('click', 'td a.linkshowuser', showUserInfo);
+    // Companyname link click
+    $('#companyList table tbody').on('click', 'td a.linkshowcompany', showCompanyInfo);
 
-    // Add User button click
-    $('#btnAddUser').on('click', addUser);
+    // Add Company button click
+    $('#btnAddCompany').on('click', addCompany);
 
-    // Delete User link click
-    $('#userList table tbody').on('click', 'td a.linkdeleteuser', deleteUser);
+    // Delete Company link click
+    $('#companyList table tbody').on('click', 'td a.linkdeletecompany', deleteCompany);
 
 });
 
@@ -27,55 +27,57 @@ function populateTable() {
     var tableContent = '';
 
     // jQuery AJAX call for JSON
-    $.getJSON('/userlist', function (data) {
+    $.getJSON('/companylist', function (data) {
 
-        // Stick our user data array into a userlist variable in the global object
-        userListData = data;
+        // Stick our company data array into a companylist variable in the global object
+        companyListData = data;
 
 
         // For each item in our JSON, add a table row and cells to the content string
         $.each(data, function () {
             tableContent += '<tr>';
-            tableContent += '<td><a href="#" class="linkshowuser" rel="' + this.username + '" title="Show Details">' + this.username + '</td>';
-            tableContent += '<td>' + this.email + '</td>';
-            tableContent += '<td><a href="#" class="linkdeleteuser" rel="' + this._id + '">delete</a></td>';
+            tableContent += '<td><a href="#" class="linkshowcompany" rel="' + this.companyname + '" title="Show Details">' + this.companyname + '</td>';
+            tableContent += '<td>' + this.product + '</td>';
+            tableContent += '<td><a href="#" class="linkdeletecompany" rel="' + this._id + '">delete</a></td>';
             tableContent += '</tr>';
         });
-
+        console.log(tableContent);
         // Inject the whole content string into our existing HTML table
-        $('#userList table tbody').html(tableContent);
+        $('#companyList table tbody').html(tableContent);
     });
 };
 
-// Show User Info
-function showUserInfo(event) {
+// Show Company Info
+function showCompanyInfo(event) {
 
     // Prevent Link from Firing
     event.preventDefault();
 
-    // Retrieve username from link rel attribute
-    var thisUserName = $(this).attr('rel');
+    // Retrieve companyname from link rel attribute
+    var thisCompanyName = $(this).attr('rel');
 
     // Get Index of object based on id value
-    var arrayPosition = userListData.map(function (arrayItem) { return arrayItem.username; }).indexOf(thisUserName);
+    var arrayPosition = companyListData.map(function (arrayItem) { return arrayItem.companyname; }).indexOf(thisCompanyName);
 
     // Get our User Object
-    var thisUserObject = userListData[arrayPosition];
+    var thisCompanyObject = companyListData[arrayPosition];
 
     //Populate Info Box
-    $('#userInfoName').text(thisUserObject.fullname);
-    $('#userInfoAge').text(thisUserObject.age);
-    $('#userInfoGender').text(thisUserObject.gender);
-    $('#userInfoLocation').text(thisUserObject.location);
+    $('#companyInfoName').text(thisCompanyObject.companyname);
+    $('#companyInfoYear').text(thisCompanyObject.foundingyear);
+    $('#companyInfoLocation').text(thisCompanyObject.location);
+    $('#companyInfoProduct').text(thisCompanyObject.product);
+    $('#companyContactName').text(thisCompanyObject.fullname);
+    $('#companyEmail').text(thisCompanyObject.email);
 };
 
-// Add User
-function addUser(event) {
+// Add Company
+function addCompany(event) {
     event.preventDefault();
 
     // Super basic validation - increase errorCount variable if any fields are blank
     var errorCount = 0;
-    $('#addUser input').each(function (index, val) {
+    $('#addCompany input').each(function (index, val) {
         if ($(this).val() === '') { errorCount++; }
     });
 
@@ -83,20 +85,21 @@ function addUser(event) {
     if (errorCount === 0) {
 
         // If it is, compile all user info into one object
-        var newUser = {
-            'username': $('#addUser fieldset input#inputUserName').val(),
-            'email': $('#addUser fieldset input#inputUserEmail').val(),
-            'fullname': $('#addUser fieldset input#inputUserFullname').val(),
-            'age': $('#addUser fieldset input#inputUserAge').val(),
-            'location': $('#addUser fieldset input#inputUserLocation').val(),
-            'gender': $('#addUser fieldset input#inputUserGender').val()
+        var newCompany = {
+            'username': $('#addCompany fieldset input#inputUserName').val(),
+            'email': $('#addCompany fieldset input#inputUserEmail').val(),
+            'fullname': $('#addCompany fieldset input#inputUserFullname').val(),
+            'companyname': $('#addCompany fieldset input#inputCompanyName').val(),
+            'location': $('#addCompany fieldset input#inputCompanyLocation').val(),
+            'foundingyear': $('#addCompany fieldset input#inputCompanyYear').val(),
+            'product': $('#addCompany fieldset input#inputCompanyProduct').val()
         }
 
         // Use AJAX to post the object to our adduser service
         $.ajax({
             type: 'POST',
-            data: newUser,
-            url: '/adduser',
+            data: newCompany,
+            url: '/addcompany',
             dataType: 'JSON'
         }).done(function (response) {
 
@@ -104,7 +107,7 @@ function addUser(event) {
             if (response.msg === '') {
 
                 // Clear the form inputs
-                $('#addUser fieldset input').val('');
+                $('#addCompany fieldset input').val('');
 
                 // Update the table
                 populateTable();
@@ -125,13 +128,13 @@ function addUser(event) {
     }
 };
 
-// Delete User
-function deleteUser(event) {
+// Delete Company
+function deleteCompany(event) {
 
     event.preventDefault();
 
     // Pop up a confirmation dialog
-    var confirmation = confirm('Are you sure you want to delete this user?');
+    var confirmation = confirm('Are you sure you want to delete this company?');
 
     // Check and make sure the user confirmed
     if (confirmation === true) {
@@ -139,7 +142,7 @@ function deleteUser(event) {
         // If they did, do our delete
         $.ajax({
             type: 'DELETE',
-            url: '/deleteuser/' + $(this).attr('rel')
+            url: '/deletecompany/' + $(this).attr('rel')
         }).done(function (response) {
 
             // Check for a successful (blank) response

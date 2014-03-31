@@ -35,9 +35,9 @@ if ('development' == app.get('env')) {
 }
 
 app.get('/', routes.index);
-app.get('/userlist', user.userlist(db));
-app.post('/adduser', user.adduser(db));
-app.delete('/deleteuser/:id', user.deleteuser(db));
+app.get('/companylist', user.companylist(db));
+app.post('/addcompany', user.addcompany(db));
+app.delete('/deletecompany/:id', user.deletecompany(db));
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));

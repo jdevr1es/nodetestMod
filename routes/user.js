@@ -1,22 +1,22 @@
 /*
- * GET userlist page.
+ * GET companylist page.
  */
 
-exports.userlist = function (db) {
+exports.companylist = function (db) {
     return function (req, res) {
-        db.collection('userlist').find().toArray(function (err, items) {
+        db.collection('companylist').find().toArray(function (err, items) {
             res.json(items);
         })
     }
 };
 
 /*
- * POST to adduser.
+ * POST to addcompany.
  */
 
-exports.adduser = function (db) {
+exports.addcompany = function (db) {
     return function (req, res) {
-        db.collection('userlist').insert(req.body, function (err, result) {
+        db.collection('companylist').insert(req.body, function (err, result) {
             res.send(
               (err === null) ? { msg: '' } : { msg: err }
             );
@@ -25,13 +25,13 @@ exports.adduser = function (db) {
 };
 
 /*
- * DELETE to deleteuser.
+ * DELETE to deletecompany.
  */
 
-exports.deleteuser = function (db) {
+exports.deletecompany = function (db) {
     return function (req, res) {
-        var userToDelete = req.params.id;
-        db.collection('userlist').removeById(userToDelete, function (err, result) {
+        var companyToDelete = req.params.id;
+        db.collection('companylist').removeById(companyToDelete, function (err, result) {
             res.send((result === 1) ? { msg: '' } : { msg: 'error: ' + err });
         });
     }

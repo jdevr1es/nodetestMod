@@ -8,61 +8,74 @@
     <script src="javascripts/global.js"></script>
 </head>
 <body>
-    <h1>Modified Nodetest Page</h1>
-    <p>Welcome to our test</p>
+    <header>
+        <img src="images/madeinusa.jpg" class="imgLeft" />
+        <h1>Made in the USA</h1>
+        <p>(Node.js Test Site)</p>
+    </header>
 
-    <img src="images/file5701291746605.jpg" width="200px"/>
-    
     <div id="wrapper">
-        <div id="userInfo">
-            <h2>user info</h2>
+        <div id="companyInfo">
+            <h2>Company Information</h2>
             <p>
                 <strong>
-                    name:
+                    Company Name:
                 </strong>
-                    <span id='userInfoName'></span>
+                <span id='companyInfoName'></span>
                 <br />
                 <strong>
-                    Age:
+                    Year Founded:
                 </strong>
-                    <span id='userInfoAge'></span>
-                <br />
-                <strong> Gender: </strong>
-                <span id='userInfoGender'></span>
+                <span id='companyInfoYear'></span>
                 <br />
                 <strong> Location: </strong>
-                <span id='userInfoLocation'></span>
+                <span id='companyInfoLocation'></span>
+                <br />
+                <strong> Product: </strong>
+                <span id='companyInfoProduct'></span>
+                <br />
+                <strong> Contact Name: </strong>
+                <span id='companyContactName'></span>
+                <br />
+                <strong> email: </strong>
+                <span id='companyEmail'></span>
+                <br />
             </p>
         </div>
 
-            <h2>User List</h2>
-        <div id="userList">
+        <h2>Company List</h2>
+        <div id="companyList">
             <table>
-                <tr>
-                    <th>username</th>
-                    <th>email</th>
-                    <th>delete?</th>
-                </tr>
+                <thead>
+                    <tr>
+                        <th>Company Name</th>
+                        <th>Product</th>
+                        <th>Delete?</th>
+                    </tr>
+                </thead>
                 <tbody></tbody>
             </table>
         </div>
 
-            <h2>Add User</h2> 
-            <div id="addUser">
-                <fieldset>
-                    <input id="inputusername" type='text' placeholder='Username' />
-                           <input id="inputuseremail" type='text' placeholder='Email' />
-                           <br />
-                           <input id="inputuserfullname" type='text' placeholder='Full Name' />
-                           <input id="inputuserage" type='text' placeholder='Age' />
-                           <br />
-                           <input id="inputuserlocation" type='text' placeholder='Location' />
-                           <input id="inputusergender" type='text' placeholder='gender' />
-                           <br />
-                           <button id="btnadduser add user" >ADD USER</button>
-                </fieldset>
-            </div>
+        <h2>Add Your Company</h2>
+        <div id="addCompany">
+            <fieldset>
+                <input id="inputUserName" type='text' placeholder='Choose a username' />
+                <input id="inputUserEmail" type='text' placeholder='Email' />
+                <br />
+                <input id="inputUserFullname" type='text' placeholder='Your full Name' />
+                <br /><br />
+                <input id="inputCompanyName" type='text' placeholder='Company Name' />
+                <input id="inputCompanyYear" type='text' placeholder='Year founded' />
+                <br />
+                <input id="inputCompanyLocation" type='text' placeholder='Your location' />
+                <br />
+                <input id="inputCompanyProduct" type='text' placeholder='Your Product' />
+                <br />
+                <button id="btnAddCompany">ADD COMPANY</button>
+            </fieldset>
         </div>
+    </div>
 
 </body>
 </html>
